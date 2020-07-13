@@ -3,6 +3,7 @@ const app = new Koa()
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const fs = require('fs').promises
+const crypto = require("crypto")
 
 const router = new Router()
 
@@ -23,9 +24,35 @@ router.post("/resume", async (ctx, next) => {
     ctx.body = "Must set a slug"
   }else{
     const filename = `${baseDir}${resume.slug}.json`
-    delete resume['slug']
-    await fs.writeFile(filename, JSON.stringify(resume))
+    await fs.writeFile(filename, JSON.stringify(resume, null, 2))
     ctx.body = resume
+  }
+})
+
+const getPasswordHash = (password) => {
+  return crypto.createHash("sha256").update(password).digest("hex")
+}
+
+router.post("/auth/login", async (ctx, next) => {
+  let password = ctx.request.body.password
+  console.log(password)
+
+  if(password === process.env.PASSWORD){
+    let hash = getPasswordHash(password)
+    ctx.body = {msg:"SUCCESS", "token":hash}
+  }else{
+    ctx.status = 401
+  }
+})
+
+router.get("/auth/user", async (ctx, next) => {
+  let hash = getPasswordHash(process.env.PASSWORD)
+  if(hash === ctx.cookies.get("token")){
+    ctx.body = {
+      user:"ADMIN"
+    }
+  }else{
+    ctx.body = {}
   }
 })
 

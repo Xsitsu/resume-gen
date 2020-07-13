@@ -1,11 +1,7 @@
 <template>
 
     <div id="resume">
-        <style>
-          :root {
-            --main-color: {{ color }};
-          }
-        </style>
+
         <page>
             <resume-header :applicant="applicant" :website="website" :role="role"></resume-header>
             <div class="page-content">
@@ -40,6 +36,7 @@
 import Page from './Page'
 import ICircle from './decorations/ICircle'
 import ResumeHeader from './ResumeHeader'
+import MainColor from './MainColor'
 
 import Column from './layout/Column'
 import SectionHeader from './layout/SectionHeader'
@@ -62,6 +59,7 @@ export default {
         Experience,
         Education,
         ResumeFooter,
+        MainColor,
     },
     props:{
         applicant:String,

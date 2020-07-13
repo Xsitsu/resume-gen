@@ -3,9 +3,11 @@
         <section-header>
             {{label}}
         </section-header>
-        <p>
-            {{ text }}
-        </p>
+        <slot>
+          <p>
+              {{ text }}
+          </p>
+        </slot>
     </div>
 </template>
 

@@ -6,9 +6,15 @@
     <h5>Display Name</h5>
     <input class="prop" type="text" v-model="resume.resumeName" />
 
-    <h5>URL</h5>
+    <h5>
+      URL
+      <button @click="saveToDB()" class="save-button">
+        <span v-if="saving">Saving ...</span>
+        <span v-else>Save</span>
+      </button>
+    </h5>
     {{ baseUrl }}/<input class="inline" style="display: inline-block; width: 100px" type="text" v-model="resume.slug" />
-    <button @click="saveToDB()" class="save-button">SAVE</button>
+
 
     <h5>Role</h5>
     <input class="prop" type="text" v-model="resume.role" />
@@ -16,18 +22,7 @@
     <h5>Color</h5>
     <div class="color-picker">
       <chrome-picker style="margin-top: 15px" v-model="color"/>
-      <!-- <div>
-        <div class="color-label">
-          Saturation {{ color.saturation }}
-        </div>
-        <input class="color-range" v-model="color.saturation" type="range" />
-      </div>
-      <div>
-        <div class="color-label">
-          Luminosity {{ color.luminosity }}
-        </div>
-        <input class="color-range" v-model="color.luminosity" type="range" />
-      </div> -->
+
     </div>
   </div>
 </template>
@@ -42,7 +37,7 @@ export default {
   },
   data(){
     return {
-
+      saving:false
     }
   },
   computed:{
@@ -54,7 +49,7 @@ export default {
     },
     color:{
       get(){
-        return this.$store.state.resume.resume.color
+        return this.$store.state.resume.resume.color || "#000"
       },
       set({hex}){
         this.$store.state.resume.resume.color = hex
@@ -62,12 +57,21 @@ export default {
     }
   },
   methods:{
-    onColorChange(h){
-      this.color.hue = h
-    },
     async saveToDB(){
-      let results = await this.$axios.post("/api/resume", this.$store.state.resume.resume)
-      console.log(results)
+      try{
+        this.saving = true;
+        let resume = this.$store.state.resume.resume
+        let slug = resume.slug
+        let response = await this.$axios.post("/api/resume", resume)
+        console.log(response)
+        if(this.$route.params.slug !== slug){
+          window.location = `/${slug}/edit`
+        }
+
+      }catch(e){
+        console.error(e)
+      }
+      this.saving = false
     }
   },
   watch:{
@@ -106,6 +110,8 @@ export default {
     background-color: var(--main-color);
     border: 2px solid var(--main-color)
   }
+
+
 
   .save-button:active{
     background: white;

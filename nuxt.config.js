@@ -10,6 +10,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'server',
+  server: {
+    port: 3000, // default: 3000
+    host: '0.0.0.0', // default: localhost,
+    timing: false
+  },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -22,7 +27,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', href: '/isocube.png' },
       { rel: 'stylesheet', type: '', href: 'https://fonts.googleapis.com/css?family=Poppins:800|Aleo:300|Titillium+Web' },
 
     ]
@@ -55,6 +60,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
   /*
   ** Axios module configuration
@@ -75,5 +81,16 @@ export default {
   },
   serverMiddleware: [
     { path: '/api', handler: '~/api/index.js' }
-  ]
+  ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+        },
+        tokenRequired: false,
+        tokenType: false
+      }
+    }
+  }
 }

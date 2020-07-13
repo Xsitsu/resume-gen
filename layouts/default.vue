@@ -1,8 +1,18 @@
 <template>
-  <div>
+  <div :style="mainColor">
     <Nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  computed:{
+    mainColor(){
+      return "--main-color: " + this.$store.state.resume.resume.color
+    }
+  }
+}
+</script>
 
 <style>
 html {

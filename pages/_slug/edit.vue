@@ -13,6 +13,7 @@
 <script>
 import Resume from '@/components/resume/Resume'
 import EditPanel from '@/components/editor/EditPanel'
+
 export default {
     components:{
         Resume,
@@ -25,10 +26,10 @@ export default {
         }
     },
     mounted(){
-        // setTimeout(()=>{
-            this.$store.dispatch("resume/load", "main");
-            this.loaded = true;
-        // }, 2000);
+      let slug = this.$route.params.slug
+      this.$store.dispatch("resume/load", slug)
+      this.loaded = true;
+
     },
     computed:{
         allSkills(){

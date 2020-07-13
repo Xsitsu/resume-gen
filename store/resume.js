@@ -18,9 +18,7 @@ export const mutations = {
 
 export const actions = {
   async load({commit}, slug){
-    console.log("PASS", state)
     let response = await axios.get("/api/resume/" + slug)
-    console.info("GOT", response)
     commit("set", response.data)
   }
 }

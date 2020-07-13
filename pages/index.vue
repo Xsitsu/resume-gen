@@ -6,7 +6,6 @@
 
 <script>
 import Resume from '@/components/resume/Resume'
-import DATA from '@/data.js'
 export default {
     components:{
         Resume
@@ -17,11 +16,8 @@ export default {
         }
     },
     mounted(){
-        // setTimeout(()=>{
-            this.$store.commit("resume/set", DATA);
-            console.log("RESUME", this.$store.state.resume)
-            this.loaded = true;
-        // }, 2000);
+      this.$store.dispatch("resume/load", "main");
+      this.loaded = true;
     }
 }
 </script>
