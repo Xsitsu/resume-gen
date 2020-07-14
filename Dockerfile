@@ -2,7 +2,7 @@ FROM node
 WORKDIR /app
 ADD . .
 RUN npm install
-RUN nuxt build
+RUN npm run build
 EXPOSE 3000
 VOLUME [ "/resumes" ]
 
