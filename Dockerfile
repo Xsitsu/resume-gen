@@ -1,8 +1,8 @@
 FROM node
-
-ADD package.json .
+WORKDIR /app
+ADD . .
 RUN npm install
-ADD .nuxt .nuxt
+RUN nuxt build
 EXPOSE 3000
 VOLUME [ "/resumes" ]
 
