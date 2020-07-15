@@ -47,7 +47,6 @@ export default {
     watch:{
       resume:{
         handler(n){
-          console.log("SET DIRTY")
           this.$store.commit("resume/setDirty")
         },
         deep:true

@@ -6,7 +6,7 @@
             <span class="proficiency-header">Experience</span>
         </section-header>
         <div class="skill-list" style="height: 100%; overflow: hidden;">
-            <draggable :disabled="!editable" :list="skills" group="skills" handle=".skill" style="height: 100%; padding-bottom: 300px;">
+            <draggable :disabled="!editable" :list="skills" group="skills" handle=".skill" style="height: 100%; padding-bottom: 100px;">
 
                 <skill v-for='skill in skills' v-bind="skill" :key="skill.name"/>
 
@@ -72,7 +72,6 @@ export default {
     },
     computed:{
       editable(){
-          console.log("EDITABLE: ", this.$store.state.resume.editable)
           return this.$store.state.resume.editable
         }
     },

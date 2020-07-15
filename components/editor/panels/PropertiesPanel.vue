@@ -1,5 +1,7 @@
 <template>
   <div id="properties-panel">
+
+
     <section-header>
       Properties
     </section-header>
@@ -8,10 +10,7 @@
 
     <h5>
       URL
-      <button @click="saveToDB()" class="btn save-button">
-        <span v-if="saving">Saving ...</span>
-        <span v-else>Save</span>
-      </button>
+
     </h5>
     {{ baseUrl }}/<input class="inline" style="display: inline-block; width: 100px" type="text" v-model="resume.slug" />
 
@@ -20,17 +19,13 @@
     <input class="prop" type="text" v-model="resume.role" />
 
     <h5>Color</h5>
-    <div class="color-picker">
+    <div class="color-picker" style="margin-bottom: 20px">
       <chrome-picker style="margin-top: 15px" v-model="color"/>
 
     </div>
-    <h5 style="margin-top: 20px">
-      <a :title="dirty ? 'Save before exporting' : ''" :class="{disabled:dirty}" :href="dirty ? '' : `/api/resume/${resume.slug}?download`" target="_blank" class="link">Export as JSON</a>
-    </h5>
-    <h5 style="margin-top: 20px">
-      <a @click="$refs.fileImport.click()" href="#" class="link">Import from JSON</a>
-    </h5>
-    <input @change="uploadFile" ref="fileImport" type="file" style="display:none" />
+
+
+
   </div>
 </template>
 
@@ -66,36 +61,7 @@ export default {
       }
     }
   },
-  methods:{
-    async saveToDB(){
-      this.saving = true;
-      let slug = this.resume.slug
-      await this.$store.dispatch("resume/save")
-      this.saving = false
-      if(this.$route.params.slug !== slug){
-        this.$router.push(`/${slug}/edit`)
-      }
-    },
-    async uploadFile(){
-      let slug = this.resume.slug
-      let file = this.$refs.fileImport.files[0];
-      console.log(file)
-      let reader = new FileReader();
-      reader.readAsText(file, "UTF-8");
-      reader.onload = (event) => {
-        let contents = event.target.result;
-        try{
-          let resume = JSON.parse(contents)
-          resume.slug = slug
-          this.$store.commit("resume/set", resume)
-          this.$store.commit("resume/setDirty")
-        }catch(e){
-          console.error(e)
-        }
-      }
 
-    }
-  },
   mounted(){
 
   }
@@ -118,10 +84,7 @@ export default {
     outline: none;
   }
 
-  .btn{
-    background-color: var(--main-color);
-    border: 2px solid var(--main-color)
-  }
+  
 
   a.link{
     color: black;
@@ -167,4 +130,10 @@ export default {
   .color-label{
     font-size: 0.7em;;
   }
+
+  .inline-block{
+    display: inline-block;
+  }
+
+
 </style>

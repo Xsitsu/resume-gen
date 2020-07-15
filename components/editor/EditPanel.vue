@@ -1,22 +1,28 @@
 <template>
     <div id="edit-panel">
-        <div class="container">
+        <div class="container" style="overflow-y: scroll; ">
+           <ImportExportPanel />
           <client-only>
             <PropertiesPanel />
           </client-only>
           <SkillPanel  :skills="$store.state.editor.skills"/>
         </div>
+
+
+
     </div>
 </template>
 <script>
-import SkillPanel from './SkillPanel'
-import PropertiesPanel from './PropertiesPanel'
+import SkillPanel from './panels/SkillPanel'
+import PropertiesPanel from './panels/PropertiesPanel'
+import ImportExportPanel from './panels/ImportExportPanel'
 import SectionHeader from '../resume/layout/SectionHeader'
 export default {
     components:{
         SkillPanel,
         SectionHeader,
         PropertiesPanel,
+        ImportExportPanel,
     },
     data(){
         return {
@@ -26,7 +32,16 @@ export default {
     methods:{
         setPanel(panel){
             this.panel = panel;
+        },
+      async saveToDB(){
+        this.saving = true;
+        let slug = this.resume.slug
+        await this.$store.dispatch("resume/save")
+        this.saving = false
+        if(this.$route.params.slug !== slug){
+          this.$router.push(`/${slug}/edit`)
         }
+    },
     },
     computed:{
       skills:{
@@ -49,6 +64,7 @@ export default {
         left: 0;
         top: 0;
         height: 100vh;
+
 
     }
 
@@ -75,5 +91,11 @@ export default {
     .container > div{
       margin-bottom: 20px;
 
+    }
+
+    .fixed-bottom{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
 </style>
