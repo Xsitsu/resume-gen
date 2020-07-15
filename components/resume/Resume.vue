@@ -36,7 +36,7 @@
 import Page from './Page'
 import ICircle from './decorations/ICircle'
 import ResumeHeader from './ResumeHeader'
-import MainColor from './MainColor'
+
 
 import Column from './layout/Column'
 import SectionHeader from './layout/SectionHeader'
@@ -59,7 +59,7 @@ export default {
         Experience,
         Education,
         ResumeFooter,
-        MainColor,
+
     },
     props:{
         applicant:String,
@@ -72,13 +72,12 @@ export default {
             default:()=>[],
             type:Array
         },
-        resumeName:String,
+        name:String,
         color:String
     },
     data(){
         return {
             columnWidth:29,
-
         }
     },
     computed:{
@@ -87,7 +86,7 @@ export default {
             return name[0][0] + name[1][0];
         },
         loaded(){
-            return true;//"resumeName" in this.resume
+            return true;
         }
     },
 
@@ -102,7 +101,7 @@ export default {
 
     },
     watch:{
-        resumeName:{
+        name:{
             handler:function(name){
                 document.title = name || "Resume";
             },

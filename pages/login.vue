@@ -39,7 +39,7 @@ export default {
         date.setTime(date.getTime() + 60*60*24*7)
         let cookie = "token=" + token + "; expires=" + date.toUTCString() + "; path=/"
         document.cookie = cookie;
-        this.$router.push("/edit")
+        this.$router.push("/main/edit")
       } catch (err) {
         this.error = true;
         this.password = ''

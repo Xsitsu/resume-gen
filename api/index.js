@@ -13,8 +13,11 @@ router.get("/resume/:slug", async (ctx, next) => {
   const slug = ctx.params.slug
   const filename = `${baseDir}${slug}.json`
   let data = await fs.readFile(filename)
-  let resume = JSON.parse(data)
-  ctx.body = resume
+  const download = "download" in ctx.request.query
+  if(download){
+    ctx.response.set('Content-disposition', 'attachment; filename=resume-' + slug + ".json");
+  }
+  ctx.body = data
 })
 
 router.post("/resume", async (ctx, next) => {

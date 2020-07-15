@@ -6,16 +6,16 @@
             <span class="proficiency-header">Experience</span>
         </section-header>
         <div class="skill-list" style="height: 100%; overflow: hidden;">
-            <draggable :list="skills" group="skills" handle=".skill" style="height: 100%; padding-bottom: 300px;">
-            
+            <draggable :disabled="!editable" :list="skills" group="skills" handle=".skill" style="height: 100%; padding-bottom: 300px;">
+
                 <skill v-for='skill in skills' v-bind="skill" :key="skill.name"/>
-            
+
             </draggable>
         </div>
     </div>
 </template>
 <script>
-import SectionHeader from '../layout/SectionHeader' 
+import SectionHeader from '../layout/SectionHeader'
 import Skill from './skills/Skill'
 import draggable from "vuedraggable";
 
@@ -46,8 +46,8 @@ export default {
         },
         calcSkills(){
             this.calculating = true;
-            
-        
+
+
 
             let overflowSkills = [];
 
@@ -68,9 +68,15 @@ export default {
             this.$emit("update:overflow", overflowSkills);
             this.calculating = false;
         },
-        
+
     },
-    
+    computed:{
+      editable(){
+          console.log("EDITABLE: ", this.$store.state.resume.editable)
+          return this.$store.state.resume.editable
+        }
+    },
+
     watch:{
         // skills(n){
         //     this.$nextTick(this.calcSkills);
@@ -79,7 +85,7 @@ export default {
     mounted(){
         // this.$nextTick(this.calcSkills);
     },
-    
+
 }
 </script>
 
@@ -93,11 +99,11 @@ export default {
         margin-bottom: 10px;
     }
 
-    
+
 
     .skill-list{
         overflow-y: hidden;
-        
+
     }
 
     .sub-section{
@@ -110,9 +116,9 @@ export default {
         opacity: 1;
     }
 
-    
 
-    
+
+
 
 
     .proficiency-header{

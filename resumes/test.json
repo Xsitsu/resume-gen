@@ -1,6 +1,6 @@
 {
   "label": "General Resume | Ian Murphy",
-  "color": "#C280FF",
+  "color": "#0FE4D7",
   "resumeVersion": "2.3.0",
   "applicant": "Ian Murphy",
   "role": "Full Stack Engineer",
@@ -262,6 +262,6 @@
       ]
     }
   ],
-  "slug": "main",
+  "slug": "test",
   "name": "General Resume | Ian Murphy"
 }

@@ -4,11 +4,11 @@
       Properties
     </section-header>
     <h5>Display Name</h5>
-    <input class="prop" type="text" v-model="resume.resumeName" />
+    <input class="prop" type="text" v-model="resume.name" />
 
     <h5>
       URL
-      <button @click="saveToDB()" class="save-button">
+      <button @click="saveToDB()" class="btn save-button">
         <span v-if="saving">Saving ...</span>
         <span v-else>Save</span>
       </button>
@@ -24,6 +24,13 @@
       <chrome-picker style="margin-top: 15px" v-model="color"/>
 
     </div>
+    <h5 style="margin-top: 20px">
+      <a :title="dirty ? 'Save before exporting' : ''" :class="{disabled:dirty}" :href="dirty ? '' : `/api/resume/${resume.slug}?download`" target="_blank" class="link">Export as JSON</a>
+    </h5>
+    <h5 style="margin-top: 20px">
+      <a @click="$refs.fileImport.click()" href="#" class="link">Import from JSON</a>
+    </h5>
+    <input @change="uploadFile" ref="fileImport" type="file" style="display:none" />
   </div>
 </template>
 
@@ -44,6 +51,9 @@ export default {
     resume(){
       return this.$store.state.resume.resume
     },
+    dirty(){
+      return this.$store.state.resume.dirty
+    },
     baseUrl(){
       return `${window.location.protocol}//${window.location.host}`
     },
@@ -58,30 +68,33 @@ export default {
   },
   methods:{
     async saveToDB(){
-      try{
-        this.saving = true;
-        let resume = this.$store.state.resume.resume
-        let slug = resume.slug
-        let response = await this.$axios.post("/api/resume", resume)
-        console.log(response)
-        if(this.$route.params.slug !== slug){
-          window.location = `/${slug}/edit`
-        }
-
-      }catch(e){
-        console.error(e)
-      }
+      this.saving = true;
+      let slug = this.resume.slug
+      await this.$store.dispatch("resume/save")
       this.saving = false
+      if(this.$route.params.slug !== slug){
+        this.$router.push(`/${slug}/edit`)
+      }
+    },
+    async uploadFile(){
+      let slug = this.resume.slug
+      let file = this.$refs.fileImport.files[0];
+      console.log(file)
+      let reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = (event) => {
+        let contents = event.target.result;
+        try{
+          let resume = JSON.parse(contents)
+          resume.slug = slug
+          this.$store.commit("resume/set", resume)
+          this.$store.commit("resume/setDirty")
+        }catch(e){
+          console.error(e)
+        }
+      }
+
     }
-  },
-  watch:{
-    // resume:{
-    //   handler(n,o){
-    //     console.info("RESUME UPDATED")
-    //     // this.saveToDB()
-    //   },
-    //   deep:true
-    // }
   },
   mounted(){
 
@@ -105,19 +118,36 @@ export default {
     outline: none;
   }
 
-  .save-button{
-    float: right;
+  .btn{
     background-color: var(--main-color);
     border: 2px solid var(--main-color)
   }
 
+  a.link{
+    color: black;
+    cursor: pointer;
+  }
+
+  a.link:hover{
+    color: var(--main-color)
+  }
+
+  a.link.disabled{
+    color: #ccc;
+  }
+
+  .save-button{
+    float: right;
+
+  }
 
 
-  .save-button:active{
+
+  btn:active{
     background: white;
   }
 
-  button:focus{
+  .btn:focus{
     outline: none;
   }
 

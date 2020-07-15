@@ -4,7 +4,7 @@
             <EditPanel  />
         </div>
         <div class="flex resume-backer" style="">
-            <Resume v-if="loaded" v-bind="$store.state.resume.resume"/>
+            <Resume v-if="resume" v-bind="resume"/>
         </div>
     </div>
 
@@ -25,10 +25,10 @@ export default {
 
         }
     },
-    mounted(){
+    async mounted(){
       let slug = this.$route.params.slug
-      this.$store.dispatch("resume/load", slug)
-      this.loaded = true;
+      this.$store.commit("resume/editable", true)
+      await this.$store.dispatch("resume/load", slug)
 
     },
     computed:{
@@ -39,9 +39,22 @@ export default {
             }else{
                 return [];
             }
+        },
+        resume(){
+          return this.$store.state.resume.resume
         }
     },
-    middleware: 'auth'
+    watch:{
+      resume:{
+        handler(n){
+          console.log("SET DIRTY")
+          this.$store.commit("resume/setDirty")
+        },
+        deep:true
+      }
+    },
+    middleware: 'auth',
+
 }
 </script>
 
