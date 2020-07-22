@@ -33,15 +33,7 @@ export default {
         setPanel(panel){
             this.panel = panel;
         },
-      async saveToDB(){
-        this.saving = true;
-        let slug = this.resume.slug
-        await this.$store.dispatch("resume/save")
-        this.saving = false
-        if(this.$route.params.slug !== slug){
-          this.$router.push(`/${slug}/edit`)
-        }
-    },
+
     },
     computed:{
       skills:{

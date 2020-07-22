@@ -49,7 +49,15 @@ export default {
 
   },
   methods:{
-
+    async saveToDB(){
+      this.saving = true;
+      let slug = this.resume.slug
+      await this.$store.dispatch("resume/save")
+      this.saving = false
+      if(this.$route.params.slug !== slug){
+        this.$router.push(`/${slug}/edit`)
+      }
+    },
     async uploadFile(){
       let slug = this.resume.slug
       let file = this.$refs.fileImport.files[0];

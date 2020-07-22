@@ -15,10 +15,14 @@ export default {
             loaded:false
         }
     },
-    mounted(){
+    async mounted(){
       let slug = this.$route.params.slug
-      console.log(slug)
-      this.$store.dispatch("resume/load", slug)
+      console.log("LOAD RESUME: ", slug)
+      try{
+        await this.$store.dispatch("resume/load", slug)
+      }catch(e){
+        throw {statusCode:404, message:"Resume not found"}
+      }
       this.loaded = true;
 
     }
