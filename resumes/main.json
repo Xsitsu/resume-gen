@@ -1,7 +1,7 @@
 {
   "label": "General Resume | Ian Murphy",
-  "color": "#80FDFF",
-  "resumeVersion": "2.3.0",
+  "color": "#50FF87",
+  "resumeVersion": "2.4.0",
   "applicant": "Ian Murphy",
   "role": "Full Stack Engineer",
   "website": "http://isogen.net",
@@ -10,25 +10,23 @@
   "phone": "(503) 830 - 2275",
   "github": "github.com/3jackdaws",
   "objective": "Seeking a position at Technology Corp  where I can apply my superior technology skills to ensure a high level of efficiency and productivity.",
-  "profile": "Results driven, perfectionist, multi-language web application engineer who is highly motivated, flexible, and team oriented.",
+  "profile": "Results driven, perfectionist, multi-language full stack engineer who is highly motivated, flexible, and team oriented.",
   "experience": [
     {
       "company": "Daimler Trucks NA",
       "title": "Full Stack Engineer",
       "from": "Mar 2019",
       "to": "Present",
-      "description": "Designed and developed a high availabilty, performance-oriented technical service document delivery application and worked closely with out-of-country teams to integrate experimental APIs. Ensured customer satisfaction of commercial vehicle information applications and microservices through the creation of automated end to end tests and the standardization of development and deployment procedures.  Maintained legacy application security compliance and performed necessary remediation steps.",
+      "description": "Used agile methodologies to satisfy rapidly changing requirements and deliver production grade features ahead of time as part of a team. Designed and developed a high availability, performance-oriented technical service document delivery application and worked closely with out-of-country teams to integrate experimental APIs. Ensured customer satisfaction of commercial vehicle information applications and microservices through the creation of automated end to end tests and the standardization of development and deployment procedures.",
       "results": [
         "Decrease in deployment validation times for critical applications"
       ],
       "technologies": [
-        "Spring Boot",
-        "WebSphere",
         "Vue.js",
-        "Urban Code",
-        "Dojo Toolkit",
-        "ASP Classic :(",
-        "C#"
+        "Spring Boot",
+        "Jenkins",
+        "Nuxt.js",
+        "Docker"
       ]
     },
     {
@@ -161,15 +159,6 @@
         "Nightwatch.js",
         "BDD/Gherkin",
         "Selenium"
-      ]
-    },
-    {
-      "name": "C#",
-      "level": 3,
-      "sub": [
-        "SpecFlow",
-        "Xamarin",
-        "Unity"
       ]
     },
     {
