@@ -77,7 +77,7 @@ export default {
     },
     data(){
         return {
-            columnWidth:29,
+            columnWidth:28,
         }
     },
     computed:{
