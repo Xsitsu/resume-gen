@@ -8,15 +8,4 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - resumes:/resumes
-
-  vscode:
-    image: codercom/code-server
-    command: --auth none
-    volumes:
-      - resumes:/home/coder/project/resumes
-    ports:
-      - 8080:8080
-
-volumes:
-  resumes:
+      - "./resumes:/app/resumes"
