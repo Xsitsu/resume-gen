@@ -10,7 +10,7 @@
   "phone": "(541) 206 - 0929",
   "github": "https://github.com/Xsitsu",
   "objective": "Seeking a position at Technology Corp  where I can apply my superior technology skills to ensure a high level of efficiency and productivity.",
-  "profile": "A pretty cool guy that still needs to fill this section out :)",
+  "profile": "Passionate, results driven, highly motivated, self starter seeking a position where I can apply my software design and development skills to solve complex problems, and work with really cool technology.",
   "experience": [
     {
       "company": "Intel",
@@ -101,7 +101,17 @@
       "name": "Operating Systems",
       "sub": [
 	"Windows",
-	"Linux"
+	"Linux",
+	"Embedded"
+      ]
+    },
+    {
+      "name": "Networking",
+      "sub": [
+	"TCP",
+	"UDP",
+	"Socket Programming",
+	"Client / Server Arch"
       ]
     },
     {
@@ -109,7 +119,9 @@
       "sub": [
 	"Git",
 	"Jira",
-	"Docker"
+	"Docker",
+	"Visio",
+	"Excel"
       ]
     },
     {
