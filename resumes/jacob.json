@@ -17,15 +17,15 @@
       "title": "Firmware Engineer",
       "from": "Oct 2021",
       "to": "Present",
-      "description": "Developed and validated firmware for Intel's MTL, ARL, and NVL projects. Feature owner for 'Reset' feature. Owned and maintained the code coverage toolchain. Responsible for weekly code coverage releases and coordinating with developers to increases coverage numbers.",
+      "description": "Developed and validated firmware for Intel's MTL, ARL, and NVL projects. Feature owner for 'Reset' feature. Owned and maintained the code coverage toolchain. Responsible for weekly code coverage releases and coordinating with other clusters to increases coverage numbers.",
       "results": [
-	"Drove increase of code coverage metrics to 95%" 
+	"Drove increase of code coverage metrics to over 95% and developed automated scripts to decrease computation time by over 90%" 
       ],
       "technologies": [
         "Ruby",
         "C++",
         "GIT",
-	"CTC++"
+	"Jira"
       ]
     },
     {
@@ -33,7 +33,7 @@
       "title": "Validation Engineer",
       "from": "Jul 2021",
       "to": "Oct 2021",
-      "description": "Validated hardware and software test cases for Intel's Dynamic Tunin product. Found and filed bugs to ensure quality and timely releases of project milestones.",
+      "description": "Validated hardware and software test cases for Intel's Dynamic Tuning product. Found and filed bugs to ensure quality and timely releases of project milestones.",
       "results": [
       ],
       "technologies": [
@@ -45,14 +45,15 @@
       "title": "Mobile Apps Team Intern",
       "from": "Jun 2017",
       "to": "Sep 2017",
-      "description": "Developed new components and features for Roblox's universal messenger app.",
+      "description": "Developed new UI components and system features for Roblox's universal messenger app to enable cross-platform communication between PC, console, and mobile devices.",
       "results": [
 	"Solved the 200MB download problem"
 	],
       "technologies": [
         "Lua",
 	"Python",
-	"React"
+	"React",
+	"Jira"
       ]
     },
     {
@@ -62,13 +63,14 @@
       "to": "Sep 2016",
       "description": "Developed new features for the Roblox game engine. Created new tools to empower game developers.",
       "results": [
-	"Led project to create V2 in-game chat system and drove delivery",
-	"Expanded HTTP Service to add support for REST APIs"
+	"Led project to create new V2 in-game chat system and drove delivery",
+	"Developed new in-game HTTP Service to add support for REST API, and robust headers"
       ],
       "technologies": [
 	"Lua",
 	"Python",
-	"C++"
+	"C++",
+	"Jira"
 	]
     }
   ],
@@ -83,52 +85,50 @@
   ],
   "skills": [
     {
-      "name": "C++",
-      "level": 0,
+      "name": "Programming Languages",
       "sub": [
-	"Modern C++",
-	"Memory Management"
+	"C",
+	"C++",
+	"C#",
+	"Python",
+	"Ruby",
+	"Java",
+	"Lua"
+      ]
+    },
+
+    {
+      "name": "Operating Systems",
+      "sub": [
+	"Windows",
+	"Linux"
       ]
     },
     {
-      "name": "C#",
-      "level": 0,
+      "name": "Tools",
       "sub": [
+	"Git",
+	"Jira",
+	"Docker"
       ]
     },
     {
-      "name": "Python",
-      "level": 0,
+      "name": "Methodologies",
       "sub": [
-      ]
-    },
-    {
-      "name": "JavaScript",
-      "level": 0,
-      "sub": [
-	"React"
-      ]
-    },
-    {
-      "name": "Java",
-      "level": 0,
-      "sub": [
+        "OOP",
+	"Agile",
+	"Design Patterns",
+	"Test driven development",
+	"Algorithms / Big-O Notation"
       ]
     },
     {
       "name": "Testing",
       "level": 0,
       "sub": [
-	"TDD",
 	"Automated Testing",
-        "Hardware Validation",
+	"Unit Testing",
 	"Profiling"
-      ]
-    },
-    {
-      "name": "Git",
-      "level": 0,
-      "sub": [
       ]
     },
     {
