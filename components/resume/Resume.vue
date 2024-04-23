@@ -15,9 +15,7 @@
                     <education :data="education" />
                 </column>
             </div>
-            <resume-footer id="p1-footer">
-
-            </resume-footer>
+            <resume-footer id="p1-footer" :email="email" :github="github" :linkedin="linkedin" :phone="phone"></resume-footer>
         </page>
         <!-- <page :loaded="!!loaded">
             <div class="page-content">
@@ -73,7 +71,11 @@ export default {
             type:Array
         },
         name:String,
-        color:String
+        color:String,
+        email:String,
+        github:String,
+        linkedin:String,
+        phone:String
     },
     data(){
         return {
